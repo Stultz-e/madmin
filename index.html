@@ -124,52 +124,53 @@
       <div class="row">
         <div class="col s12 m6 l8">
           <div class="card-panel">
-              <div id="chartContainer" style="height: 370px; width: 100%;">
-                  <script>
-                      window.onload = function () {
-                      
-                      var chart = new CanvasJS.Chart("chartContainer", {
-                        animationEnabled: true,
-                        theme: "light2",
-                        title:{
-                          text: "Daily Visitors"
-                        },
-                        axisY:{
-                          includeZero: false
-                        },
-                        data: [{        
-                          type: "line",       
-                          dataPoints: [
-                            { y: 450 },
-                            { y: 414},
-                            { y: 520},
-                            { y: 460 },
-                            { y: 450 },
-                            { y: 500 },
-                            { y: 540 , indexLabel: "highest",markerColor: "red", markerType: "triangle" },
-                            { y: 480 },
-                            { y: 410 , indexLabel: "lowest",markerColor: "DarkSlateGrey", markerType: "cross" },
-                            { y: 500 },
-                            { y: 480 },
-                            { y: 510 }
-                          ]
-                        }]
-                      });
-                      chart.render();
-                      
-                      }
-                      </script>
-              </div>
+            <div id="chartContainer" style="height: 370px; width: 100%;"></div>
           </div>
         </div>
 
         <div class="col s12 m6 l4">
           <!-- Latest Comments -->
-
+          <ul class="collection with-header latest-comments">
+            <li class="collection-header"><h5>Latest Comments</h5></li>
+            <li class="collection-item avatar">
+              <img src="img/person1.jpg" alt="" class="circle" />
+              <span class="title">Joen Doe</span>
+              <p class="truncate">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
+                ipsam et rerum eveniet. Nostrum quia praesentium exercitationem
+                aliquid repudiandae vero voluptas laborum? Accusamus ab totam
+                eaque rerum, saepe esse facere.
+              </p>
+              <a href="" class="approve green-text">Approve</a> |
+              <a href="" class="deny red-text">Deny</a>
+            </li>
+            <li class="collection-item avatar">
+              <img src="img/person2.jpg" alt="" class="circle" />
+              <span class="title">Ellen Williams</span>
+              <p class="truncate">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
+                ipsam et rerum eveniet. Nostrum quia praesentium exercitationem
+                aliquid repudiandae vero voluptas laborum? Accusamus ab totam
+                eaque rerum, saepe esse facere.
+              </p>
+              <a href="" class="approve green-text">Approve</a> |
+              <a href="" class="deny red-text">Deny</a>
+            </li>
+            <li class="collection-item avatar">
+              <img src="img/person3.jpg" alt="" class="circle" />
+              <span class="title">Jean assrey</span>
+              <p class="truncate">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
+                ipsam et rerum eveniet. Nostrum quia praesentium exercitationem
+                aliquid repudiandae vero voluptas laborum? Accusamus ab totam
+                eaque rerum, saepe esse facere.
+              </p>
+              <a href="" class="approve green-text">Approve</a> |
+              <a href="" class="deny red-text">Deny</a>
+            </li>
+          </ul>
         </div>
-
       </div>
-      
     </section>
 
     <!-- Preloader-->
@@ -186,8 +187,11 @@
       type="text/javascript"
       src="https://code.jquery.com/jquery-3.2.1.min.js"
     ></script>
+    <script type="text/javascript" src="js/chart.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
-    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"
+    <script
+      type="text/javascript"
+      src="https://canvasjs.com/assets/script/canvasjs.min.js"
     ></script>
     <script>
       $(".section").hide();
@@ -209,18 +213,28 @@
               .animate(
                 {
                   Counter: $(this).text()
-                },
-                {
+                }, {
                   duration: 1000,
-                  easing: "swing",
+                  easing: 'swing',
                   step: function(now) {
                     $(this).text(Math.ceil(now));
                   }
-                }
-              );
+                });
           });
-        });
+
+      // Comments - Approve & Deny
+      $('.approve').click(function(e) {
+        Materialize.toast('Comment Approved', 3000);
+        e.preventDefault();
       });
+
+      $('.deny').click(function(e) {
+        Materialize.toast('Comment denied', 3000);
+        e.preventDefault();
+      });
+
+        });
+      }, 1000);
     </script>
   </body>
 </html>
