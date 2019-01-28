@@ -240,10 +240,97 @@
           <i class="material-icons">mode_edit</i>
         </a>
       </li>
+      <li>
+        <a href="#category-modal" class="modal-trigger btn-floating blue">
+          <i class="material-icons">folder</i>
+        </a>
+      </li>
+      <li>
+        <a href="#user-modal" class="modal-trigger btn-floating blue">
+          <i class="material-icons">supervisor_account</i>
+        </a>
+      </li>
     </ul>
   </div>
 
-  <!-- Preloader-->
+  <!-- Add Category Modal -->
+  <div id="post-modal" class="modal">
+    <div class="modal-content">
+      <h4>Add Post</h4>
+      <form>
+        <div class="input-field">
+          <input type="text" id="title">
+          <label for="title">Title</label>
+        </div>
+        <div class="input-field">
+
+          <select value="">
+            <option value="" disabled selected>Select option</option>
+            <option value="1">Web Development</option>
+            <option value="2">Graphic Design</option>
+            <option value="3">Tech Gadgets</option>
+            <option value="4">Other</option>
+          </select>
+          <label>Category</label>
+        </div>
+        <div class="input-field">
+          <textarea name="body" id="body" class="materialize-textarea"></textarea>
+        </div>
+      </form>
+      <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close btn blue white-text">Submit</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Post Modal -->
+  <div id="category-modal" class="modal">
+    <div class="modal-content">
+      <h4>Add Category</h4>
+      <form>
+        <div class="input-field">
+          <input type="text" id="title">
+          <label for="title">Title</label>
+        </div>
+      </form>
+      <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close btn blue white-text">Submit</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="user-modal" class="modal">
+    <div class="modal-content">
+      <h4>Add User</h4>
+      <form>
+          <div class="input-field">
+              <input type="text" id="name">
+              <label for="name">Name</label>
+          </div>
+
+        <div class="input-field">
+          <input type="email" id="email">
+          <label for="title">Email</label>
+        </div>
+
+        <div class="input-field">
+          <input type="password" id="password">
+          <label for="password">Password</label>
+        </div>
+
+        <div class="input-field">
+          <input type="password" id="password2">
+          <label for="password">Confirm Password</label>
+        </div>
+
+      </form>
+      <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close btn blue white-text">Submit</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Preloader -->
   <div class=" loader preloader-wrapper big active">
     <div class="spinner-layer spinner-blue-only">
       <div class="circle-clipper left">
@@ -263,6 +350,7 @@
   <script type="text/javascript" src="js/chart.js"></script>
   <script type="text/javascript" src="js/materialize.min.js"></script>
   <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+  <script src="https://cdn.ckeditor.com/4.11.2/standard/ckeditor.js"></script>
   <script>
     $(".section").hide();
     setTimeout(function () {
@@ -275,6 +363,12 @@
 
         //Init Side nav
         $(".button-collapse").sideNav();
+
+        //Init Modal
+        $('.modal').modal();
+
+        // Init Select 
+        $('select').material_select();
 
         // Counter
         $(".count").each(function () {
@@ -313,23 +407,26 @@
                 </div>
               </li>`;
 
-              $('.todos').append(output);
-              
-              Materialize.toast('Todo Added', 3000);
+          $('.todos').append(output);
 
-              e.preventDefault();
+          Materialize.toast('Todo Added', 3000);
+
+          e.preventDefault();
         });
 
-      // Delete Todos 
-      $('.todos').on('click', '.delete', function (e) {
-        $(this).parent().parent().remove();
-        Materialize.toast('Todo Removed', 3000);
+        // Delete Todos 
+        $('.todos').on('click', '.delete', function (e) {
+          $(this).parent().parent().remove();
+          Materialize.toast('Todo Removed', 3000);
 
-        e.preventDefault();
-      });
+          e.preventDefault();
+        });
+
+        CKEDITOR.replace('body');
 
       });
     }, 1000);
   </script>
 </body>
+
 </html>
