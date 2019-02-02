@@ -414,7 +414,6 @@
           e.preventDefault();
         });
 
-        // Delete Todos 
         $('.todos').on('click', '.delete', function (e) {
           $(this).parent().parent().remove();
           Materialize.toast('Todo Removed', 3000);
